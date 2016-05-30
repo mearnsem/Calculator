@@ -41,21 +41,81 @@ class ViewController: UIViewController {
     
     func setupButtons() {
         displayLabel.backgroundColor = .blackColor()
+        
         buttonZero.backgroundColor = .lightGrayColor()
+        buttonZero.setTitle("0", forState: .Normal)
+        buttonZero.setTitleColor(.blackColor(), forState: .Normal)
+        buttonZero.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonOne.backgroundColor = .lightGrayColor()
+        buttonOne.setTitle("1", forState: .Normal)
+        buttonOne.setTitleColor(.blackColor(), forState: .Normal)
+        buttonOne.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonTwo.backgroundColor = .lightGrayColor()
+        buttonTwo.setTitle("2", forState: .Normal)
+        buttonTwo.setTitleColor(.blackColor(), forState: .Normal)
+        buttonTwo.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonThree.backgroundColor = .lightGrayColor()
+        buttonThree.setTitle("3", forState: .Normal)
+        buttonThree.setTitleColor(.blackColor(), forState: .Normal)
+        buttonThree.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonFour.backgroundColor = .lightGrayColor()
+        buttonFour.setTitle("4", forState: .Normal)
+        buttonFour.setTitleColor(.blackColor(), forState: .Normal)
+        buttonFour.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonFive.backgroundColor = .lightGrayColor()
+        buttonFive.setTitle("5", forState: .Normal)
+        buttonFive.setTitleColor(.blackColor(), forState: .Normal)
+        buttonFive.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonSix.backgroundColor = .lightGrayColor()
+        buttonSix.setTitle("6", forState: .Normal)
+        buttonSix.setTitleColor(.blackColor(), forState: .Normal)
+        buttonSix.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonSeven.backgroundColor = .lightGrayColor()
+        buttonSeven.setTitle("7", forState: .Normal)
+        buttonSeven.setTitleColor(.blackColor(), forState: .Normal)
+        buttonSeven.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonEight.backgroundColor = .lightGrayColor()
+        buttonEight.setTitle("8", forState: .Normal)
+        buttonEight.setTitleColor(.blackColor(), forState: .Normal)
+        buttonEight.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonNine.backgroundColor = .lightGrayColor()
+        buttonNine.setTitle("9", forState: .Normal)
+        buttonNine.setTitleColor(.blackColor(), forState: .Normal)
+        buttonNine.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonDivide.backgroundColor = .orangeColor()
+        buttonDivide.setTitle("%", forState: .Normal)
+        buttonDivide.setTitleColor(.whiteColor(), forState: .Normal)
+        buttonDivide.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonMultiply.backgroundColor = .orangeColor()
+        buttonMultiply.setTitle("x", forState: .Normal)
+        buttonMultiply.setTitleColor(.whiteColor(), forState: .Normal)
+        buttonMultiply.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonSubtract.backgroundColor = .orangeColor()
+        buttonSubtract.setTitle("-", forState: .Normal)
+        buttonSubtract.setTitleColor(.whiteColor(), forState: .Normal)
+        buttonSubtract.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonAdd.backgroundColor = .orangeColor()
+        buttonAdd.setTitle("+", forState: .Normal)
+        buttonAdd.setTitleColor(.whiteColor(), forState: .Normal)
+        buttonAdd.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        
         buttonEnter.backgroundColor = .greenColor()
+        buttonEnter.setTitle("=", forState: .Normal)
+        buttonEnter.setTitleColor(.whiteColor(), forState: .Normal)
+        buttonEnter.titleLabel?.font = UIFont(name: "Arial", size: 30)
         
         view.addSubview(displayLabel)
         view.addSubview(buttonZero)
@@ -95,14 +155,12 @@ class ViewController: UIViewController {
         buttonAdd.translatesAutoresizingMaskIntoConstraints = false
         buttonEnter.translatesAutoresizingMaskIntoConstraints = false
         
-        //Display label Width & Constraints
+        //Display label Width, Height, & Constraints
         let displayLabelWidth = NSLayoutConstraint(item: displayLabel, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0)
         let displayLabelHeight = NSLayoutConstraint(item: displayLabel, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.25, constant: 1)
-        let displayLabelLeading = NSLayoutConstraint(item: displayLabel, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         let displayLabelTop = NSLayoutConstraint(item: displayLabel, attribute: .Top, relatedBy: .Equal, toItem: view, attribute: .Top, multiplier: 1.0, constant: 0)
-        let displayLabelTrailing = NSLayoutConstraint(item: displayLabel, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
         
-        view.addConstraints([displayLabelWidth, displayLabelHeight, displayLabelLeading, displayLabelTop, displayLabelTrailing])
+        view.addConstraints([displayLabelWidth, displayLabelHeight, displayLabelTop])
         
         //Button Row 1 Constraints
         let buttonSevenLeadingToViewLeading = NSLayoutConstraint(item: buttonSeven, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
@@ -152,7 +210,49 @@ class ViewController: UIViewController {
         let buttonAddTopToSubtractBottom = NSLayoutConstraint(item: buttonAdd, attribute: .Top, relatedBy: .Equal, toItem: buttonSubtract, attribute: .Bottom, multiplier: 1.0, constant: 0)
         let buttonAddTrailingToViewTrailing = NSLayoutConstraint(item: buttonAdd, attribute: .Trailing, relatedBy: .Equal, toItem: view, attribute: .Trailing, multiplier: 1.0, constant: 0)
         
-        view.addConstraints([buttonZeroLeadingToViewLeading, buttonZeroTopToOneBottom, buttonZeroTrailingToEnterLeading, buttonEnterTopToThreeBottom, buttonEnterTrailingToAddLeading, buttonAddTopToSubtractBottom, buttonAddTrailingToViewTrailing])
+        let buttonZeroBottomToViewBottom = NSLayoutConstraint(item: buttonZero, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        let buttonEnterBottomToViewBottom = NSLayoutConstraint(item: buttonEnter, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        let buttonAddBottomToViewBottom = NSLayoutConstraint(item: buttonAdd, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        
+        view.addConstraints([buttonZeroLeadingToViewLeading, buttonZeroTopToOneBottom, buttonZeroTrailingToEnterLeading, buttonEnterTopToThreeBottom, buttonEnterTrailingToAddLeading, buttonAddTopToSubtractBottom, buttonAddTrailingToViewTrailing, buttonZeroBottomToViewBottom, buttonEnterBottomToViewBottom, buttonAddBottomToViewBottom])
+        
+        //Button Heights
+        let buttonSevenHeight = NSLayoutConstraint(item: buttonSeven, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonEightHeight = NSLayoutConstraint(item: buttonEight, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonNineHeight = NSLayoutConstraint(item: buttonNine, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonDivideHeight = NSLayoutConstraint(item: buttonDivide, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonFourHeight = NSLayoutConstraint(item: buttonFour, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonFiveHeight = NSLayoutConstraint(item: buttonFive, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonSixHeight = NSLayoutConstraint(item: buttonSix, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonMultiplyHeight = NSLayoutConstraint(item: buttonMultiply, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonOneHeight = NSLayoutConstraint(item: buttonOne, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonTwoHeight = NSLayoutConstraint(item: buttonTwo, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonThreeHeight = NSLayoutConstraint(item: buttonThree, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonSubtractHeight = NSLayoutConstraint(item: buttonSubtract, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonZeroHeight = NSLayoutConstraint(item: buttonZero, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonEnterHeight = NSLayoutConstraint(item: buttonEnter, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        let buttonAddHeight = NSLayoutConstraint(item: buttonAdd, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
+        
+        view.addConstraints([buttonSevenHeight, buttonEightHeight, buttonNineHeight, buttonDivideHeight, buttonFourHeight, buttonFiveHeight, buttonSixHeight, buttonMultiplyHeight, buttonOneHeight, buttonTwoHeight, buttonThreeHeight, buttonSubtractHeight, buttonZeroHeight, buttonEnterHeight, buttonAddHeight])
+        
+        //Button Widths
+        let buttonSevenWidth = NSLayoutConstraint(item: buttonSeven, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonEightWidth = NSLayoutConstraint(item: buttonEight, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonNineWidth = NSLayoutConstraint(item: buttonNine, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonDivideWidth = NSLayoutConstraint(item: buttonDivide, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonFourWidth = NSLayoutConstraint(item: buttonFour, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonFiveWidth = NSLayoutConstraint(item: buttonFive, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonSixWidth = NSLayoutConstraint(item: buttonSix, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonMultiplyWidth = NSLayoutConstraint(item: buttonMultiply, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonOneWidth = NSLayoutConstraint(item: buttonOne, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonTwoWidth = NSLayoutConstraint(item: buttonTwo, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonThreeWidth = NSLayoutConstraint(item: buttonThree, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonSubtractWidth = NSLayoutConstraint(item: buttonSubtract, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonZeroWidth = NSLayoutConstraint(item: buttonZero, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.50, constant: 0)
+        let buttonEnterWidth = NSLayoutConstraint(item: buttonEnter, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        let buttonAddWidth = NSLayoutConstraint(item: buttonAdd, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.25, constant: 0)
+        
+        view.addConstraints([buttonSevenWidth, buttonEightWidth, buttonNineWidth, buttonDivideWidth, buttonFourWidth, buttonFiveWidth, buttonSixWidth, buttonMultiplyWidth, buttonOneWidth, buttonTwoWidth, buttonThreeWidth, buttonSubtractWidth, buttonZeroWidth, buttonEnterWidth, buttonAddWidth])
    
     }
 }
