@@ -12,7 +12,7 @@ class Stack {
     
     private var numbers = [Float]()
     
-    func pop(number: Float) -> Float? {
+    func pop() -> Float? {
         return numbers.removeLast()
     }
     

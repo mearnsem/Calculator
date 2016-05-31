@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     
     // MARK: - Properties
     
-    let displayLabel = UILabel()
+    var displayLabel = UILabel()
+    
     let buttonZero = UIButton()
     let buttonOne = UIButton()
     let buttonTwo = UIButton()
@@ -32,15 +33,16 @@ class ViewController: UIViewController {
     var holdPlace = false
     var displayValue: Float {
         get {
-            return (displayLabel.text! as NSString).floatValue
+            let text = displayLabel.text ?? "0"
+            return (text as NSString).floatValue
         }
-        set(newValue) {
-            displayLabel.text = String(newValue)
-            holdPlace = true
+        set {
+            displayLabel.text = "\(newValue)"
+            holdPlace = false
         }
     }
     
-    var stack: Stack
+    var stack = Stack()
     
     // MARK: - LifeCycle
     
@@ -56,81 +58,115 @@ class ViewController: UIViewController {
         
         //Colors & Text
         displayLabel.backgroundColor = .blackColor()
+        displayLabel.textColor = .whiteColor()
+        displayLabel.font = .systemFontOfSize(60.0)
+        displayLabel.textAlignment = .Right
+        displayLabel.text = "0"
         
         buttonZero.backgroundColor = .lightGrayColor()
         buttonZero.setTitle("0", forState: .Normal)
         buttonZero.setTitleColor(.blackColor(), forState: .Normal)
         buttonZero.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonZero.layer.borderWidth = 0.5
+        buttonZero.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonOne.backgroundColor = .lightGrayColor()
         buttonOne.setTitle("1", forState: .Normal)
         buttonOne.setTitleColor(.blackColor(), forState: .Normal)
         buttonOne.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonOne.layer.borderWidth = 0.5
+        buttonOne.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonTwo.backgroundColor = .lightGrayColor()
         buttonTwo.setTitle("2", forState: .Normal)
         buttonTwo.setTitleColor(.blackColor(), forState: .Normal)
         buttonTwo.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonTwo.layer.borderWidth = 0.5
+        buttonTwo.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonThree.backgroundColor = .lightGrayColor()
         buttonThree.setTitle("3", forState: .Normal)
         buttonThree.setTitleColor(.blackColor(), forState: .Normal)
         buttonThree.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonThree.layer.borderWidth = 0.5
+        buttonThree.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonFour.backgroundColor = .lightGrayColor()
         buttonFour.setTitle("4", forState: .Normal)
         buttonFour.setTitleColor(.blackColor(), forState: .Normal)
         buttonFour.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonFour.layer.borderWidth = 0.5
+        buttonFour.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonFive.backgroundColor = .lightGrayColor()
         buttonFive.setTitle("5", forState: .Normal)
         buttonFive.setTitleColor(.blackColor(), forState: .Normal)
         buttonFive.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonFive.layer.borderWidth = 0.5
+        buttonFive.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonSix.backgroundColor = .lightGrayColor()
         buttonSix.setTitle("6", forState: .Normal)
         buttonSix.setTitleColor(.blackColor(), forState: .Normal)
         buttonSix.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonSix.layer.borderWidth = 0.5
+        buttonSix.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonSeven.backgroundColor = .lightGrayColor()
         buttonSeven.setTitle("7", forState: .Normal)
         buttonSeven.setTitleColor(.blackColor(), forState: .Normal)
         buttonSeven.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonSeven.layer.borderWidth = 0.5
+        buttonSeven.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonEight.backgroundColor = .lightGrayColor()
         buttonEight.setTitle("8", forState: .Normal)
         buttonEight.setTitleColor(.blackColor(), forState: .Normal)
         buttonEight.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonEight.layer.borderWidth = 0.5
+        buttonEight.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonNine.backgroundColor = .lightGrayColor()
         buttonNine.setTitle("9", forState: .Normal)
         buttonNine.setTitleColor(.blackColor(), forState: .Normal)
         buttonNine.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonNine.layer.borderWidth = 0.5
+        buttonNine.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonDivide.backgroundColor = .orangeColor()
         buttonDivide.setTitle("%", forState: .Normal)
         buttonDivide.setTitleColor(.whiteColor(), forState: .Normal)
         buttonDivide.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonDivide.layer.borderWidth = 0.5
+        buttonDivide.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonMultiply.backgroundColor = .orangeColor()
         buttonMultiply.setTitle("x", forState: .Normal)
         buttonMultiply.setTitleColor(.whiteColor(), forState: .Normal)
         buttonMultiply.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonMultiply.layer.borderWidth = 0.5
+        buttonMultiply.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonSubtract.backgroundColor = .orangeColor()
         buttonSubtract.setTitle("-", forState: .Normal)
         buttonSubtract.setTitleColor(.whiteColor(), forState: .Normal)
         buttonSubtract.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonSubtract.layer.borderWidth = 0.5
+        buttonSubtract.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonAdd.backgroundColor = .orangeColor()
         buttonAdd.setTitle("+", forState: .Normal)
         buttonAdd.setTitleColor(.whiteColor(), forState: .Normal)
         buttonAdd.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonAdd.layer.borderWidth = 0.5
+        buttonAdd.layer.borderColor = UIColor.blackColor().CGColor
         
         buttonEnter.backgroundColor = .greenColor()
         buttonEnter.setTitle("=", forState: .Normal)
         buttonEnter.setTitleColor(.whiteColor(), forState: .Normal)
         buttonEnter.titleLabel?.font = UIFont(name: "Arial", size: 30)
+        buttonEnter.layer.borderWidth = 0.5
+        buttonEnter.layer.borderColor = UIColor.blackColor().CGColor
         
         //Add targets
         buttonZero.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
@@ -143,6 +179,11 @@ class ViewController: UIViewController {
         buttonSeven.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
         buttonEight.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
         buttonNine.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonDivide.addTarget(self, action: #selector(operateButton), forControlEvents: .TouchUpInside)
+        buttonMultiply.addTarget(self, action: #selector(operateButton), forControlEvents: .TouchUpInside)
+        buttonSubtract.addTarget(self, action: #selector(operateButton), forControlEvents: .TouchUpInside)
+        buttonAdd.addTarget(self, action: #selector(operateButton), forControlEvents: .TouchUpInside)
+        buttonEnter.addTarget(self, action: #selector(enter), forControlEvents: .TouchUpInside)
         
         view.addSubview(displayLabel)
         view.addSubview(buttonZero)
@@ -175,12 +216,36 @@ class ViewController: UIViewController {
         }
     }
     
-    func enterButtonTapped() {
-        
+    func enter() {
+        holdPlace = false
+        stack.push(displayValue)
+        stack.log()
     }
     
     func operateButton(button: UIButton) {
-        
+        guard let operation = button.currentTitle else {return}
+        if holdPlace {
+            enter()
+        }
+        if stack.count() >= 2 {
+            let float1 = stack.pop()!
+            let float2 = stack.pop()!
+            
+            switch operation {
+            case "%" :
+                displayValue = float2 / float1
+            case "x" :
+                displayValue = float2 * float1
+            case "+" :
+                displayValue = float2 + float1
+            case "-" :
+                displayValue = float2 - float1
+            default:
+                stack.push(float1)
+                stack.push(float2)
+            }
+            enter()
+        }
     }
     
     func setupConstraints() {
@@ -250,6 +315,7 @@ class ViewController: UIViewController {
         //Button Row 4 Constraints
         let buttonZeroLeadingToViewLeading = NSLayoutConstraint(item: buttonZero, attribute: .Leading, relatedBy: .Equal, toItem: view, attribute: .Leading, multiplier: 1.0, constant: 0)
         let buttonZeroTopToOneBottom = NSLayoutConstraint(item: buttonZero, attribute: .Top, relatedBy: .Equal, toItem: buttonOne, attribute: .Bottom, multiplier: 1.0, constant: 0)
+        let buttonZeroTopToTwoBottom = NSLayoutConstraint(item: buttonZero, attribute: .Top, relatedBy: .Equal, toItem: buttonTwo, attribute: .Bottom, multiplier: 1.0, constant: 0)
         let buttonZeroTrailingToEnterLeading = NSLayoutConstraint(item: buttonZero, attribute: .Trailing, relatedBy: .Equal, toItem: buttonEnter, attribute: .Leading, multiplier: 1.0, constant: 0)
         let buttonEnterTopToThreeBottom = NSLayoutConstraint(item: buttonEnter, attribute: .Top, relatedBy: .Equal, toItem: buttonThree, attribute: .Bottom, multiplier: 1.0, constant: 0)
         let buttonEnterTrailingToAddLeading = NSLayoutConstraint(item: buttonEnter, attribute: .Trailing, relatedBy: .Equal, toItem: buttonAdd, attribute: .Leading, multiplier: 1.0, constant: 0)
@@ -260,7 +326,7 @@ class ViewController: UIViewController {
         let buttonEnterBottomToViewBottom = NSLayoutConstraint(item: buttonEnter, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
         let buttonAddBottomToViewBottom = NSLayoutConstraint(item: buttonAdd, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: 0)
         
-        view.addConstraints([buttonZeroLeadingToViewLeading, buttonZeroTopToOneBottom, buttonZeroTrailingToEnterLeading, buttonEnterTopToThreeBottom, buttonEnterTrailingToAddLeading, buttonAddTopToSubtractBottom, buttonAddTrailingToViewTrailing, buttonZeroBottomToViewBottom, buttonEnterBottomToViewBottom, buttonAddBottomToViewBottom])
+        view.addConstraints([buttonZeroLeadingToViewLeading, buttonZeroTopToOneBottom, buttonZeroTopToTwoBottom, buttonZeroTrailingToEnterLeading, buttonEnterTopToThreeBottom, buttonEnterTrailingToAddLeading, buttonAddTopToSubtractBottom, buttonAddTrailingToViewTrailing, buttonZeroBottomToViewBottom, buttonEnterBottomToViewBottom, buttonAddBottomToViewBottom])
         
         //Button Heights
         let buttonSevenHeight = NSLayoutConstraint(item: buttonSeven, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.1875, constant: 0)
