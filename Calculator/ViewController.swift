@@ -29,6 +29,19 @@ class ViewController: UIViewController {
     let buttonAdd = UIButton()
     let buttonEnter = UIButton()
     
+    var holdPlace = false
+    var displayValue: Float {
+        get {
+            return (displayLabel.text! as NSString).floatValue
+        }
+        set(newValue) {
+            displayLabel.text = String(newValue)
+            holdPlace = true
+        }
+    }
+    
+    var stack: Stack
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -40,6 +53,8 @@ class ViewController: UIViewController {
     // MARK: - Functions
     
     func setupButtons() {
+        
+        //Colors & Text
         displayLabel.backgroundColor = .blackColor()
         
         buttonZero.backgroundColor = .lightGrayColor()
@@ -117,6 +132,18 @@ class ViewController: UIViewController {
         buttonEnter.setTitleColor(.whiteColor(), forState: .Normal)
         buttonEnter.titleLabel?.font = UIFont(name: "Arial", size: 30)
         
+        //Add targets
+        buttonZero.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonOne.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonTwo.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonThree.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonFour.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonFive.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonSix.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonSeven.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonEight.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        buttonNine.addTarget(self, action: #selector(numberButtonTapped), forControlEvents: .TouchUpInside)
+        
         view.addSubview(displayLabel)
         view.addSubview(buttonZero)
         view.addSubview(buttonOne)
@@ -135,6 +162,25 @@ class ViewController: UIViewController {
         view.addSubview(buttonEnter)
         
         setupConstraints()
+    }
+    
+    func numberButtonTapped(button: UIButton) {
+        guard let digit = button.currentTitle else {return}
+        if holdPlace {
+            let displayText = displayLabel.text ?? ""
+            displayLabel.text = displayText + digit
+        } else {
+            displayLabel.text = digit
+            holdPlace = true
+        }
+    }
+    
+    func enterButtonTapped() {
+        
+    }
+    
+    func operateButton(button: UIButton) {
+        
     }
     
     func setupConstraints() {
